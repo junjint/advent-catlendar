@@ -583,7 +583,7 @@ function features(o, sw, fc){
     if (E === 'sleepy') f += `<path d="M ${x-6},-1 Q ${x},4 ${x+6},-1"/>`;
     if (E === 'happy') f += `<path d="M ${x-6},1 Q ${x},-6 ${x+6},1"/>`;
   }
-  f += `<path d="M -3.6,6 L 3.6,6 L 0,9.6 Z" fill="${fc}"/>`;
+  f += `<path d="M -3.6,6 L 3.6,6 L 0,9.6 Z" fill="${o.nose || fc}"/>`;
   const M = o.mouth || 'w';
   if (M === 'w' || M === 'fang') f += `<path d="M 0,9.6 L 0,11.5 M -6,11.5 Q -3,15.5 0,11.5 Q 3,15.5 6,11.5"/>`;
   if (M === 'fang') f += `<path d="M 2.6,13.4 L 3.4,17.6 L 4.9,13" fill="${C.paper}"/>`;
@@ -926,7 +926,7 @@ const ART = {
   18:{pose:'peek', coat:'#e8b47a', pattern:{t:'stripes', c:'#c07c3e'}, ears:'pointy', eyes:'round', iris:'#9cc07a', container:'stocking', blush:1},
   19:{pose:'loaf', coat:'#e08f46', pattern:{t:'stripes', c:'#22263b', bold:1}, ears:'pointy', eyes:'almond', iris:'#d9b04a', props:['giftback']},
   20:{pose:'profile', coat:'#aaa5a3', pattern:{t:'stripes', c:'#5f5a58'}, ears:'curl', eyes:'round', iris:'#d9b04a', props:['mistletoe']},
-  21:{pose:'peek', coat:'#efe3cc', points:'#5b4436', ears:'pointy', eyes:'round', iris:'#7fa6d6', container:'box', whitePaws:1, props:['bowhead'], deco:'snow'}
+  21:{pose:'loaf', coat:'#f8f6f1', ears:'pointy', eyes:'round', iris:'#93a8bd', blush:1, tailColor:'#8f8c95', patches:{head:[[-25,-22,21,18,'#8f8c95'],[25,-22,21,18,'#8f8c95'],[-16,-1,12,10,'#8f8c95'],[16,-1,12,10,'#8f8c95'],[-30,-40,10,12,'#8f8c95'],[30,-40,10,12,'#8f8c95']], body:[[150,118,30,22,'#8f8c95'],[112,106,16,10,'#8f8c95'],[176,150,12,16,'#8f8c95']]}, nose:'#e59aa0', props:['collar'], deco:'sparkle'}
 };
 const PZ = {"queens6":{"n":6,"regions":["221110","222111","222331","244333","244333","544333"]},"queens7":{"n":7,"regions":["1100000","1110000","2110000","2116663","2266463","5566666","5566666"]},"sudokuEasy":{"puzzle":"002630003402300000260143136500000061","solution":"412635653412341256265143136524524361"},"sudokuHard":{"puzzle":"040050000000062540015000000060250400","solution":"643152521634362541415326134265256413"},"tango":{"n":6,"givens":"000000201001000000000100000000000000","cons":[[7,13,"x"],[27,33,"x"],[28,34,"="],[2,8,"x"],[28,29,"="],[0,6,"="]]},"zip5":{"n":5,"nums":{"2":1,"6":7,"10":6,"12":4,"13":3,"15":5,"19":2}},"zip6":{"n":6,"nums":{"0":6,"2":7,"4":8,"15":5,"20":4,"27":3,"30":1,"34":2}},"ws":{"n":9,"rows":["BOMBAYONM","BPUFTSYRA","EERGGIKAN","NRMFAADGX","GSGGBMEDC","AIYYBEVOU","LASNISOLL","WNCULENLW","ASPHYNXKC"],"words":["SIAMESE","SPHYNX","PERSIAN","BENGAL","RAGDOLL","BOMBAY","MANX","DEVON"]}};
 const KINDS = {
@@ -972,7 +972,7 @@ const DAYS = {
   18:{breed:'Munchkin', fact:'Short legs from a natural genetic quirk. Still fast, still nosy, still fits in a stocking.', g:'wordle', p:{answer:'FROST'}},
   19:{breed:'Toyger', fact:'Bred to look like a toy tiger: bold stripes on a bright orange coat.', g:'sudoku', p:PZ.sudokuHard},
   20:{breed:'American Curl', fact:'Born with straight ears that curl back within the first few days.', g:'zip', p:PZ.zip6},
-  21:{breed:'Snowshoe', fact:'A pointed cat with four white paws, like it just walked through fresh snow. Today is the longest night of the year. It gets lighter from here.', g:'conn', p:{groups:[
+  21:{breed:'Mankii', fact:'Justin’s very own cat, saved for the very last box. Grey ears, a white blaze down the forehead, a pink nose, and those big eyes. Today is the longest night of the year. It gets lighter from here.', g:'conn', p:{groups:[
       {name:'Coat patterns', words:['TABBY','CALICO','TUXEDO','TORTIE']},
       {name:'Carols start with…', words:['SILENT','JINGLE','DECK','JOY']},
       {name:'Breed openers in this calendar', words:['SCOTTISH','BRITISH','JAPANESE','TURKISH']},
