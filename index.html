@@ -697,9 +697,10 @@ const POSES = {
     const h = {x:62, y:96, s:.95};
     const d = 'M 52,118 C 44,140 46,168 66,176 L 168,176 C 186,174 192,154 186,134 C 180,112 156,100 126,100 C 106,100 94,104 86,110 Z';
     const pc = o.points || o.coat;
-    let post = tube('M 180,166 C 172,182 146,186 120,182', o.tailColor || pc, o.tail === 'fluffy' ? 18 : 12);
+    let post = tube('M 180,166 C 172,182 146,186 120,182', o.tailColor || pc, o.tail === 'fluffy' ? 18 : 12, '', 1, {ink:o.ink});
     if (o.tail === 'fluffy') post += strokes('M 150,190 L 148,196 M 134,188 L 131,194', C.ink, 2.2);
-    post += piece('M 44,178 C 42,168 54,164 70,168 C 76,172 74,180 64,180 Z', pc) + piece('M 72,180 C 72,170 86,168 98,172 C 102,178 98,182 88,182 Z', pc);
+    const pawOpt = o.ink ? {base:C.ink} : {};
+    post += piece('M 44,178 C 42,168 54,164 70,168 C 76,172 74,180 64,180 Z', o.ink ? null : pc, '', 1, pawOpt) + piece('M 72,180 C 72,170 86,168 98,172 C 102,178 98,182 88,182 Z', o.ink ? null : pc, '', 1, pawOpt);
     return {h, pre:'', post, body: bodyShape(d, o, [44,98,190,178], 'v', 'M 150,176 C 134,170 132,142 150,130 C 160,124 170,128 176,136')};
   },
   curl(o){
@@ -906,19 +907,19 @@ const icon = (name, cls='') => `<svg viewBox="0 0 40 40" class="${cls}" aria-hid
 
 /* ---------------- the 21 days ---------------- */
 const ART = {
-  1:{pose:'sit', coat:'#8d9bb8', ears:'pointy', eyes:'round', iris:'#8fbf7a', props:['scarf'], deco:'snow'},
+  1:{pose:'sit', coat:'#fbf9f4', ears:'pointy', eyes:'round', iris:'#c8c46a', nose:'#e7a3a3', blush:1, fluff:1, tail:'fluffy', tailColor:'#a99286', patches:{head:[[-24,-24,20,16,'#8e8c96'],[26,-26,18,15,'#e2b48e'],[-30,-40,10,12,'#8e8c96'],[30,-40,10,12,'#e2b48e']], body:[[120,152,24,18,'#8e8c96'],[82,112,10,8,'#8e8c96'],[134,172,12,8,'#e2b48e']]}, props:['scarf'], deco:'snow'},
   2:{pose:'profile', coat:'#b98c5f', pattern:{t:'stripes', c:'#5e4129'}, ears:'tufted', eyes:'almond', iris:'#d9b04a', fluff:1, tail:'fluffy', props:['santa'], deco:'snow'},
   3:{pose:'sit', coat:'#efe2c6', points:'#6e5444', ears:'pointy', eyes:'almond', iris:'#7fa6d6', props:['lights']},
   4:{pose:'peek', coat:'#c9c3ba', pattern:{t:'stripes', c:'#7a7368'}, ears:'fold', eyes:'round', iris:'#e0b04a', mouth:'o', container:'mug'},
   5:{pose:'sit', coat:'#efc3b0', ears:'big', eyes:'almond', iris:'#9cc07a', wrinkles:1, sweater:1, tail:'thin', blush:1},
   6:{pose:'loaf', coat:'#ddd5ca', ears:'round', eyes:'dot', mouth:'flat', fluff:1, tail:'fluffy', props:['bow'], deco:'sparkle'},
-  7:{pose:'stand', coat:'#dca45c', pattern:{t:'spots', c:'#5a3a22'}, ears:'pointy', eyes:'round', iris:'#9cc07a', mouth:'o', props:['ornament']},
+  7:{pose:'stand', coat:'#b9a68e', pattern:{t:'stripes', c:'#5e4e3c'}, ears:'pointy', eyes:'round', iris:'#9cc07a', nose:'#d99a8f', props:['ornament']},
   8:{pose:'curl', coat:'#b9bdc4', pattern:{t:'stripes', c:'#3f4352'}, ears:'pointy', eyes:'sleepy', props:['cane'], deco:'zz'},
   9:{pose:'back', coat:'#f1e8d8', points:'#8b90a8', ears:'pointy', eyes:'round', iris:'#7fa6d6', fluff:1, props:['collar'], deco:'sparkle'},
   10:{pose:'profile', coat:'#c98049', pattern:{t:'ticked', c:'#6b3d1e'}, ears:'big', eyes:'almond', iris:'#d9b04a', mouth:'o', props:['star']},
   11:{pose:'sit', coat:'#e3a463', pattern:{t:'stripes', c:'#b8743a'}, tail:'none', ears:'pointy', eyes:'dot', props:['snowman'], deco:'snow', blush:1, dx:-16},
   12:{pose:'bust', coat:'#8e98aa', ears:'round', eyes:'round', iris:'#d98a3c', props:['earmuffs'], blush:1},
-  13:{pose:'loaf', coat:'#a98e73', pattern:{t:'stripes', c:'#5a4634'}, ears:'tufted', eyes:'almond', iris:'#9cc07a', fluff:1, tail:'fluffy', props:['beanie'], deco:'snow'},
+  13:{pose:'loaf', ink:1, coat:'#2c2c36', points:'#2c2c36', tailColor:'#2c2c36', ears:'pointy', eyes:'round', iris:'#e2a63c', props:['beanie'], deco:'snow'},
   14:{pose:'bust', coat:'#cbbdc8', pattern:{t:'curly', c:'#7d6a7a'}, ears:'big', eyes:'round', iris:'#e0b04a', mouth:'fang', props:['elf']},
   15:{pose:'sit', ink:1, ears:'pointy', eyes:'round', iris:'#e2a63c', props:['candle'], dx:14},
   16:{pose:'curl', coat:'#f6f3ee', patches:{head:[[-24,-24,20,15,'#c9794a'],[24,-24,18,14,'#c9794a']]}, tailColor:'#c9794a', ears:'pointy', eyes:'sleepy', props:['wreath']},
@@ -944,7 +945,7 @@ const KINDS = {
   slider:['Scramble','sliding tiles','Slide the tiles into the empty space until the cat is back in one piece.']
 };
 const DAYS = {
-  1:{breed:'Russian Blue', fact:'A silvery-blue coat so dense it stands out from the body. Shy with strangers, devoted to their people.', g:'wordle', p:{answer:'MERRY'}},
+  1:{breed:'Weasel', fact:'Justin’s own fluffy girl opens the very first box. White fur with grey and peach patches, a pink nose, and a tail like a feather duster.', g:'wordle', p:{answer:'MERRY'}},
   2:{breed:'Maine Coon', fact:'One of the biggest house cats. Built for snowy winters, with tufted ears and fur between the toes like snowshoes.', g:'pin', p:{clues:['Comet','Cupid','Dancer','Vixen','Rudolph'], accept:['reindeer','rain deer'], answer:'Santa’s reindeer'}},
   3:{breed:'Siamese', fact:'Born almost all white. The dark points fill in as they grow, because the coolest parts of the body grow the darkest fur.', g:'memory', p:{icons:['star','flake','bauble','bell','mitten','fish']}},
   4:{breed:'Scottish Fold', fact:'Every Scottish Fold traces back to one barn cat named Susie, found in Scotland in 1961.', g:'ladder', p:{start:'COLD', end:'WARM', rungs:[['CORD','Rope, or what the tree lights plug in with'],['CARD','A holiday greeting that comes in the mail'],['WARD','Hospital wing, or “to ___ off the chill”']]}},
@@ -954,13 +955,13 @@ const DAYS = {
       {name:'On the tree', words:['STAR','ANGEL','TINSEL','LIGHTS']},
       {name:'Snow ___', words:['FLAKE','BALL','MAN','STORM']},
       {name:'Cat ___', words:['NAP','WALK','FISH','SUIT']}]}},
-  7:{breed:'Bengal', fact:'Spotted like its wild leopard-cat ancestors, and plenty of them actually like water.', g:'queens', p:PZ.queens6},
+  7:{breed:'Dusty', fact:'A tabby through and through: stripes down her legs, an M on her forehead, and her eyes on that ornament.', g:'queens', p:PZ.queens6},
   8:{breed:'American Shorthair', fact:'Rode ships to North America to keep mice out of the cargo. Very good at the job.', g:'ws', p:PZ.ws},
   9:{breed:'Ragdoll', fact:'Named for the way many go completely floppy when you pick them up.', g:'wordle', p:{answer:'COCOA'}},
   10:{breed:'Abyssinian', fact:'Each hair is banded with several colors, which gives the coat its warm, ticked shimmer.', g:'tango', p:PZ.tango},
   11:{breed:'Manx', fact:'From the Isle of Man. Most are born with little or no tail, and their long back legs give them a bunny hop.', g:'zip', p:PZ.zip5},
   12:{breed:'British Shorthair', fact:'Round face, round eyes, round everything. Often called the model for the Cheshire Cat’s grin.', g:'nono', p:{rows:['#......#','##....##','########','#..##..#','########','###..###','########','.######.']}},
-  13:{breed:'Norwegian Forest Cat', fact:'A thick, water-resistant double coat made for Scandinavian winters, plus serious tree-climbing skills.', g:'pin', p:{clues:['Noble','Fraser','Balsam','Douglas','Blue spruce'], accept:['christmas tree','xmas tree','tree','fir','spruce','evergreen','conifer','pine'], answer:'Christmas trees'}},
+  13:{breed:'Toast', fact:'A black cat in perfect loaf position, which is the only reasonable shape for a cat named Toast.', g:'pin', p:{clues:['Noble','Fraser','Balsam','Douglas','Blue spruce'], accept:['christmas tree','xmas tree','tree','fir','spruce','evergreen','conifer','pine'], answer:'Christmas trees'}},
   14:{breed:'Devon Rex', fact:'Huge ears, a wavy coat, and a habit of riding on shoulders. Sometimes called the pixie cat.', g:'conn', p:{groups:[
       {name:'Cat favorites', words:['BOX','YARN','LASER','CATNIP']},
       {name:'Cookie ___', words:['SHEET','CUTTER','DOUGH','MONSTER']},
@@ -976,7 +977,7 @@ const DAYS = {
       {name:'Coat patterns', words:['TABBY','CALICO','TUXEDO','TORTIE']},
       {name:'Carols start with…', words:['SILENT','JINGLE','DECK','JOY']},
       {name:'Breed openers in this calendar', words:['SCOTTISH','BRITISH','JAPANESE','TURKISH']},
-      {name:'Breed enders in this calendar', words:['FOLD','BLUE','COON','REX']}]}}
+      {name:'Breed enders in this calendar', words:['FOLD','CURL','COON','REX']}]}}
 };
 const PRAISE = ['Purrfect.', 'Nailed it, Justin.', 'The cat approves.', 'Clever paws.', 'Meow-velous.', 'Look at you go.', 'Whiskers well earned.', 'Top cat.'];
 
