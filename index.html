@@ -70,11 +70,12 @@ h1 .dash{color:var(--berry)}
 .box3d.arrive{animation:drop .85s cubic-bezier(.3,1.45,.5,1)}
 @keyframes drop{from{transform:translateY(-170px) scale(.7)}to{transform:none}}
 .bf,.lf{position:absolute;border:2.4px solid var(--ink);backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.bf{inset:0;--rib:linear-gradient(90deg,transparent 42%,var(--pine) 42% 58%,transparent 58%);--paint:radial-gradient(120% 90% at 30% 20%,#d86a5e,#b8463d)}
-.bf.front{transform:translateZ(calc(var(--s)/2));background:var(--rib),var(--paint)}
-.bf.back{transform:rotateY(180deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(34,38,59,.25),rgba(34,38,59,.25)),var(--rib),var(--paint)}
-.bf.right{transform:rotateY(90deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(34,38,59,.24),rgba(34,38,59,.24)),var(--rib),var(--paint)}
-.bf.left{transform:rotateY(-90deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(34,38,59,.24),rgba(34,38,59,.24)),var(--rib),var(--paint)}
+.box3d{--c1:#d86a5e;--c2:#b8463d;--l1:#e07468;--l2:#c04c42;--rc:#3f7356;--pat:linear-gradient(transparent,transparent)}
+.bf{inset:0;--rib:linear-gradient(90deg,transparent 42%,var(--rc) 42% 58%,transparent 58%);--paint:radial-gradient(120% 90% at 30% 20%,var(--c1),var(--c2))}
+.bf.front{transform:translateZ(calc(var(--s)/2));background:var(--rib),var(--pat),var(--paint)}
+.bf.back{transform:rotateY(180deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(34,38,59,.25),rgba(34,38,59,.25)),var(--rib),var(--pat),var(--paint)}
+.bf.right{transform:rotateY(90deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(34,38,59,.24),rgba(34,38,59,.24)),var(--rib),var(--pat),var(--paint)}
+.bf.left{transform:rotateY(-90deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(34,38,59,.24),rgba(34,38,59,.24)),var(--rib),var(--pat),var(--paint)}
 .bf.bottom{transform:rotateX(-90deg) translateZ(calc(var(--s)/2));background:#8f342d}
 .bf.hole{transform:rotateX(90deg) translateZ(calc(var(--s)/2 - 1px));background:radial-gradient(circle at 50% 45%,#4a3236,#1d1519)}
 .bf::after,.lf::after{content:"";position:absolute;inset:5px;border:1.2px dashed rgba(252,251,247,.35);pointer-events:none}
@@ -84,12 +85,12 @@ h1 .dash{color:var(--berry)}
 .tag3d b{font-family:var(--display);font-weight:400;font-size:calc(var(--s)*.42);line-height:1;color:var(--ink)}
 .tag3d::before{content:"";position:absolute;top:4px;left:50%;width:9px;height:9px;margin-left:-4.5px;border:1.8px solid var(--ink);border-radius:50%}
 .lid{position:absolute;inset:0;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,-.35,.55,1)}
-.lf{left:-7px;right:-7px;top:-6px;height:var(--lh);background:linear-gradient(90deg,transparent 42%,var(--pine) 42% 58%,transparent 58%),radial-gradient(120% 120% at 30% 0%,#e07468,#c04c42)}
+.lf{left:-7px;right:-7px;top:-6px;height:var(--lh);background:linear-gradient(90deg,transparent 42%,var(--rc) 42% 58%,transparent 58%),var(--pat),radial-gradient(120% 120% at 30% 0%,var(--l1),var(--l2))}
 .lf.lfront{transform:translateZ(calc(var(--s)/2 + 7px))}
 .lf.lback{transform:rotateY(180deg) translateZ(calc(var(--s)/2 + 7px))}
 .lf.lright{transform:rotateY(90deg) translateZ(calc(var(--s)/2 + 7px));filter:brightness(.82)}
 .lf.lleft{transform:rotateY(-90deg) translateZ(calc(var(--s)/2 + 7px));filter:brightness(.82)}
-.lf.ltop{top:-7px;height:calc(var(--s) + 14px);transform:rotateX(90deg) translateZ(calc(var(--s)/2 + 6px));background:linear-gradient(90deg,transparent 42%,var(--pine) 42% 58%,transparent 58%),linear-gradient(transparent 42%,var(--pine) 42% 58%,transparent 58%),radial-gradient(120% 120% at 30% 20%,#e58074,#c8554a);filter:brightness(1.06)}
+.lf.ltop{top:-7px;height:calc(var(--s) + 14px);transform:rotateX(90deg) translateZ(calc(var(--s)/2 + 6px));background:linear-gradient(90deg,transparent 42%,var(--rc) 42% 58%,transparent 58%),linear-gradient(transparent 42%,var(--rc) 42% 58%,transparent 58%),var(--pat),radial-gradient(120% 120% at 30% 20%,var(--l1),var(--l2));filter:brightness(1.06)}
 .bow{position:absolute;left:50%;top:0;width:calc(var(--s)*.62);height:calc(var(--s)*.44);margin-left:calc(var(--s)*-.31);transform:translateY(calc(var(--s)*-.47)) rotateY(34deg) rotateX(22deg)}
 .bow svg,.boxpop svg{width:100%;height:100%;display:block;overflow:visible}
 .boxpop{position:absolute;left:14%;top:12%;width:72%;height:72%;transform:translateY(0) rotateY(34deg) rotateX(22deg);transition:transform .9s .25s cubic-bezier(.25,1.5,.45,1)}
@@ -124,9 +125,9 @@ h1 .dash{color:var(--berry)}
 .gtimer:nth-child(2){transform:rotate(.7deg)}
 .g-bow{position:absolute;left:50%;top:-12px;width:96px;height:58px;margin-left:-48px;z-index:2}
 .g-bow svg{width:100%;height:100%;display:block;overflow:visible}
-.g-lid{position:relative;z-index:1;height:30px;margin:0 -9px;border:2.4px solid var(--ink);border-radius:8px 11px 6px 7px/6px 8px 7px 10px;background:linear-gradient(90deg,transparent 44%,var(--rib) 44% 56%,transparent 56%),radial-gradient(120% 160% at 25% 0,var(--lid1),var(--lid2));box-shadow:0 5px 0 rgba(34,38,59,.2)}
+.g-lid{position:relative;z-index:1;height:30px;margin:0 -9px;border:2.4px solid var(--ink);border-radius:8px 11px 6px 7px/6px 8px 7px 10px;background:linear-gradient(90deg,transparent 44%,var(--rib) 44% 56%,transparent 56%),var(--pat),radial-gradient(120% 160% at 25% 0,var(--lid1),var(--lid2));box-shadow:0 5px 0 rgba(34,38,59,.2)}
 .g-lid::after,.g-body::after{content:"";position:absolute;inset:4px;border:1.2px dashed rgba(252,251,247,.4);border-radius:inherit;pointer-events:none}
-.g-body{position:relative;margin-top:-2px;border:2.4px solid var(--ink);border-top:0;border-radius:0 0 10px 8px/0 0 8px 10px;padding:20px 14px 22px;background:linear-gradient(90deg,transparent 44%,var(--rib) 44% 56%,transparent 56%),radial-gradient(130% 110% at 30% 10%,var(--box1),var(--box2));box-shadow:4px 9px 0 rgba(34,38,59,.13)}
+.g-body{position:relative;margin-top:-2px;border:2.4px solid var(--ink);border-top:0;border-radius:0 0 10px 8px/0 0 8px 10px;padding:20px 14px 22px;background:linear-gradient(90deg,transparent 44%,var(--rib) 44% 56%,transparent 56%),var(--pat),radial-gradient(130% 110% at 30% 10%,var(--box1),var(--box2));box-shadow:4px 9px 0 rgba(34,38,59,.13)}
 .g-tag{position:relative;z-index:1;background:var(--paper);border:2.2px solid var(--ink);border-radius:9px 5px 10px 6px/6px 10px 5px 9px;padding:8px 8px 10px;transform:rotate(-1.2deg);box-shadow:2px 4px 0 rgba(34,38,59,.22)}
 .gtimer:nth-child(2) .g-tag{transform:rotate(1.1deg)}
 .g-label{margin:0 0 4px;font-family:var(--display);font-size:30px;line-height:1;color:var(--ink)}
@@ -139,6 +140,7 @@ h1 .dash{color:var(--berry)}
 .g-colon{font-size:clamp(28px,9vw,40px);line-height:1.1;color:var(--ink-soft)}
 .g-u.flip b{animation:flipnum .38s cubic-bezier(.2,1.4,.5,1)}
 .g-done{margin:6px 0 2px;font-family:var(--display);font-size:40px;line-height:1;color:var(--berry)}
+.gtimer{--pat:linear-gradient(transparent,transparent)}
 .gt-day{--box1:#dc6f62;--box2:#b8463d;--lid1:#e98477;--lid2:#c8554a;--rib:var(--pine)}
 .gt-end{--box1:#6a9a7c;--box2:#3f7356;--lid1:#82ae92;--lid2:#4f8466;--rib:var(--gold)}
 .tlabel{margin:14px 0 4px;font-size:15px;color:var(--ink-soft)}
@@ -1087,7 +1089,54 @@ function lightsSVG(){
 }
 function renderLights(){ const h = lightsSVG(); $('#lights').innerHTML = h; $('#wLights').innerHTML = h; }
 const box = $('#box');
-$('#bow').innerHTML = `<svg viewBox="-25 -20 50 34" aria-hidden="true">${bowAt(0, 4, C.pine)}</svg>`;
+/* A different gift wrap for every day: [light, dark, ribbon, pattern, pattern colour] */
+const WRAPS = {
+  1:['#d86a5e','#b8463d','#3f7356','none'],                       2:['#4f8a66','#3a6b4f','#e7b54e','dots','rgba(255,255,255,.55)'],
+  3:['#7fa3d6','#5b7fb8','#c4473e','flakes','rgba(255,255,255,.8)'], 4:['#e7b54e','#cf9632','#c4473e','diag','rgba(196,71,62,.45)'],
+  5:['#8a5a8c','#6c4270','#e7b54e','stars','rgba(242,209,107,.9)'],   6:['#f0a2a8','#dc7f88','#c4473e','bigdots','rgba(255,255,255,.7)'],
+  7:['#c9a57a','#a9845a','#c4473e','stars','rgba(196,71,62,.6)'],     8:['#f4efe6','#e3dbcc','#3f7356','candy','rgba(196,71,62,.8)'],
+  9:['#3f8f8a','#2c6e6a','#e7b54e','zig','rgba(242,209,107,.55)'],    10:['#2f3a66','#1f284d','#d9dde8','stars','rgba(255,255,255,.85)'],
+  11:['#f4efe6','#e1d8c6','#3f7356','plaid','rgba(196,71,62,.45)'],   12:['#ee9548','#d77a2f','#5b6fb0','dots','rgba(255,255,255,.6)'],
+  13:['#3a3a46','#24242e','#e7b54e','stars','rgba(242,209,107,.8)'],  14:['#a8d8c2','#83bfa4','#e07a8c','diag','rgba(224,122,140,.5)'],
+  15:['#8e2f3c','#6f2230','#e7b54e','confetti','#e07a8c'],            16:['#b7a6d9','#9785c2','#6c4270','flakes','rgba(255,255,255,.85)'],
+  17:['#c4473e','#a63a33','#e7b54e','check','rgba(63,115,86,.6)'],     18:['#f4d98a','#e6c264','#c4473e','bigdots','rgba(196,71,62,.55)'],
+  19:['#cfe2ef','#a9c8dd','#ffffff','candy','rgba(255,255,255,.6)'],  20:['#e9a7b5','#d4899b','#3f7356','hearts','rgba(255,255,255,.8)'],
+  21:['#e8c25a','#c99a2e','#c4473e','confetti','#c4473e']
+};
+function tint(hex, amt){
+  const n = parseInt(hex.slice(1), 16), t = amt > 0 ? 255 : 0, a = Math.abs(amt);
+  const ch = v => Math.round(v + (t - v) * a);
+  return '#' + ((1 << 24) | (ch(n >> 16) << 16) | (ch(n >> 8 & 255) << 8) | ch(n & 255)).toString(16).slice(1);
+}
+const svgTile = (inner, size) => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'>${inner}</svg>`)}") 0 0/${size}px ${size}px`;
+function wrapPattern(t, p){
+  switch (t){
+    case 'dots': return `radial-gradient(circle, ${p} 0 2.6px, transparent 3.2px) 0 0/15px 15px`;
+    case 'bigdots': return `radial-gradient(circle, ${p} 0 5px, transparent 5.8px) 0 0/30px 30px, radial-gradient(circle, ${p} 0 5px, transparent 5.8px) 15px 15px/30px 30px`;
+    case 'diag': return `repeating-linear-gradient(45deg, ${p} 0 7px, transparent 7px 16px)`;
+    case 'candy': return `repeating-linear-gradient(90deg, ${p} 0 10px, transparent 10px 22px)`;
+    case 'zig': return `linear-gradient(135deg, ${p} 25%, transparent 25%) -10px 0/20px 20px, linear-gradient(225deg, ${p} 25%, transparent 25%) -10px 0/20px 20px`;
+    case 'plaid': return `repeating-linear-gradient(0deg, ${p} 0 6px, transparent 6px 24px), repeating-linear-gradient(90deg, ${p} 0 6px, transparent 6px 24px)`;
+    case 'check': return `conic-gradient(${p} 25%, transparent 0 50%, ${p} 0 75%, transparent 0) 0 0/26px 26px`;
+    case 'stars': return svgTile(`<path d='M17 6l3 7 7 .6-5.4 4.6 1.7 7-6.3-3.8-6.3 3.8 1.7-7L6.6 13.6l7-.6z' fill='${p}'/>`, 34);
+    case 'flakes': return svgTile(`<g stroke='${p}' stroke-width='1.8' stroke-linecap='round'><path d='M18 8v20M9.3 13l17.4 10M9.3 23l17.4-10'/></g>`, 36);
+    case 'hearts': return svgTile(`<path d='M17 26c-6-4.5-9-8-8-11.5 1-3 5-3.5 8 .5 3-4 7-3.5 8-.5 1 3.5-2 7-8 11.5z' fill='${p}'/>`, 34);
+    case 'confetti': return `radial-gradient(circle, #f2d16b 0 2.4px, transparent 3px) 0 0/22px 22px, radial-gradient(circle, #ffffff 0 2px, transparent 2.6px) 11px 7px/22px 22px, radial-gradient(circle, ${p} 0 2.2px, transparent 2.8px) 5px 15px/22px 22px`;
+    default: return 'linear-gradient(transparent,transparent)';
+  }
+}
+const bowSVG = color => `<svg viewBox="-25 -20 50 34" aria-hidden="true">${bowAt(0, 4, color)}</svg>`;
+function styleWrap(el, d, kind){
+  const [c1, c2, rc, pt, pc] = WRAPS[d] || WRAPS[1], pat = wrapPattern(pt, pc), st = el.style;
+  if (kind === 'timer'){
+    st.setProperty('--box1', c1); st.setProperty('--box2', c2); st.setProperty('--lid1', tint(c1, .12)); st.setProperty('--lid2', tint(c2, .1)); st.setProperty('--rib', rc); st.setProperty('--pat', pat);
+    const b = el.querySelector('.g-bow'); if (b) b.innerHTML = bowSVG(rc);
+  } else {
+    st.setProperty('--c1', c1); st.setProperty('--c2', c2); st.setProperty('--l1', tint(c1, .12)); st.setProperty('--l2', tint(c2, .1)); st.setProperty('--rc', rc); st.setProperty('--pat', pat);
+    $('#bow').innerHTML = bowSVG(rc);
+  }
+}
+$('#bow').innerHTML = bowSVG(C.pine);
 let boxDay = 0, boxBusy = false, lastReal = -1;
 const nextBox = () => { for (let d = 1; d <= 21; d++) if (!isOpened(d)) return d; return 0; };
 function renderBox(arrive){
@@ -1096,6 +1145,7 @@ function renderBox(arrive){
   $('#boxWrap').hidden = !boxDay;
   if (boxDay){
     $('#boxNum').textContent = boxDay;
+    styleWrap(box, boxDay, 'box');
     $('#boxPop').innerHTML = drawFace(boxDay);
     box.classList.toggle('locked', !isUnlocked(boxDay));
     box.setAttribute('aria-label', isUnlocked(boxDay) ? `Open box ${boxDay}` : `Box ${boxDay} is locked until December ${boxDay}`);
@@ -1132,10 +1182,13 @@ function countdown(){
   else { cap = `Box ${boxDay} is still wrapped`; }
   return {realOpen, cap, tap, sub, day, end};
 }
+let styledDay = 0;
 function tick(){
   const c = countdown();
   if (lastReal !== -1 && c.realOpen !== lastReal && !boxBusy && !box.classList.contains('opening')){ lastReal = c.realOpen; renderBox(); return; }
   lastReal = c.realOpen;
+  const wd = c.realOpen < 21 ? c.realOpen + 1 : 21;
+  if (wd !== styledDay){ styledDay = wd; styleWrap($('#gDay'), wd, 'timer'); styleWrap($('#wgDay'), wd, 'timer'); }
   setGift($('#gDay'), c.day.label, c.day.ms, c.day.done); setGift($('#gEnd'), c.end.label, c.end.ms, c.end.done);
   setGift($('#wgDay'), c.day.label, c.day.ms, c.day.done); setGift($('#wgEnd'), c.end.label, c.end.ms, c.end.done);
   $('#wCap').textContent = c.cap.replace('is ready', 'is ready!'); $('#wSub').innerHTML = c.sub;
